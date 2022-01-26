@@ -1,4 +1,4 @@
-# GoogleCalendarMover
+# Google-Calendar-Mover
 
 
 "Quick and Dirty" development speed, no refinement planned from the start.
