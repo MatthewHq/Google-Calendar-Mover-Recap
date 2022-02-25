@@ -107,8 +107,15 @@ def main():
                         updated_event = service.events().move(
                         calendarId=calendar_list_entry['id'], eventId=event['id'],
                         destination=finishedId).execute()
+                    elif subject.lower().endswith("zzz"):
+                        daysDelayedStr=subject[0]+""+subject[1]
+                        daysDelayed=int(daysDelayedStr)
+                        print(str(subject)+" THIS ONE IS DELAYED "+daysDelayedStr)
+                        delayTo=datetime.now().date() - timedelta(days=daysDelayed)
+                        bawdy={'summary':subject,'description':event.get('description'),'start':{'date':str(delayTo)},'end':{'date':str(delayTo)}}
+                        updated_event = service.events().update(calendarId=calendar_list_entry['id'], eventId=event['id'], body=bawdy).execute()
                     elif (not startDateString[1]) and evDay.date()<datetime.now().date():
-                        print(str(subject)+" THIS ONE IS TO BE MOVED")
+                        print(str(subject)+" THIS ONE IS TO BE MOVED")                        
                         bawdy={'summary':subject,'description':event.get('description'),'start':{'date':str(datetime.now().date())},'end':{'date':str(datetime.now().date())}}
                         updated_event = service.events().update(calendarId=calendar_list_entry['id'], eventId=event['id'], body=bawdy).execute()
                     
