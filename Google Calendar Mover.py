@@ -9,11 +9,22 @@ from datetime import datetime, timezone, timedelta
 import csv
 import os
 
+import sys
+
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 
 
 def main():
+    old_stdout = sys.stdout
+
+    log_file = open("logs/"+datetime.now().strftime("%Y-%m-%d_%H-%M-%S")+".log","w")
+    sys.stdout = log_file
+
+    
+
+
+
     path="backups"
     if not os.path.isfile(path):
         try:
@@ -140,6 +151,9 @@ def main():
             calPrinter(key,calendars.get(key))
         if not page_token:
             break
+        
+        sys.stdout = old_stdout
+        log_file.close()
 
 def writeToFile(filename,rows):
     with open("backups"+os.path.sep+datetime.now().strftime("%m%d%Y%H%M%S")+" "+filename+'.csv', 'w', newline='') as csvfile:
