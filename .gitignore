@@ -1,5 +1,6 @@
 *.pickle
 credentials.json
+calendars.json
 backups/*
 
 # Byte-compiled / optimized / DLL files

@@ -81,7 +81,7 @@ def main():
                 
                 # CallAPi
                 events_result = service.events().list(calendarId=calendar_list_entry['id'],maxResults=15,
-                 timeMax=tommorrow,timeMin=local_time_daysRemoved.isoformat(), singleEvents=True,orderBy='startTime').execute()
+                timeMax=tommorrow,timeMin=local_time_daysRemoved.isoformat(), singleEvents=True,orderBy='startTime').execute()
                 events = events_result.get('items', [])
 
                 printCal=False
